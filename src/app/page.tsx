@@ -1,7 +1,7 @@
 "use client";
-import Image from "next/image";
-import { useState } from "react";
+import { getPosts } from "./api";
 
-export default function Home() {
+export default async function Home() {
+  const res = await getPosts();
   return <div>Home</div>;
 }

@@ -14,23 +14,21 @@ const firebaseConfig = {
 
 let firebaseApp: FirebaseApp;
 let auth: Auth;
-let firestore: Firestore;
-let provider: GoogleAuthProvider;
 let db: Firestore;
+let provider: GoogleAuthProvider;
 
 // サーバーサイドでレンダリングするときにエラーが起きないようにするための記述
 if (typeof window !== "undefined" && !getApps().length) {
   firebaseApp = initializeApp(firebaseConfig);
   auth = getAuth(firebaseApp);
-  firestore = getFirestore(firebaseApp);
-  provider = new GoogleAuthProvider();
   db = getFirestore(firebaseApp);
+  provider = new GoogleAuthProvider();
 } else {
   // クライアント側ではインスタンスを初期化しない
   firebaseApp = {} as FirebaseApp;
   auth = {} as Auth;
-  firestore = {} as Firestore;
+  db = {} as Firestore;
   provider = {} as GoogleAuthProvider;
 }
 
-export { firebaseApp, auth, firestore, db, provider };
+export { firebaseApp, auth, db, provider };

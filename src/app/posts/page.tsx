@@ -1,15 +1,22 @@
 "use client";
 import React, { ChangeEvent, useState } from "react";
-import { addPosts } from "../api";
+import { addPosts, getPosts } from "../api";
+import { useRouter } from "next/navigation";
 
 // inputの中身を取得する⇨DBに保存する
 
 const page = () => {
+  const router = useRouter();
   const [title, setTitle] = useState<string>("");
   const [text, setText] = useState<string>("");
 
   const handlePost = async () => {
-    await addPosts();
+    await addPosts(title, text).then((res) => {
+      setText("");
+      setTitle("");
+      console.log("投稿成功");
+      router.push("/");
+    });
   };
 
   return (

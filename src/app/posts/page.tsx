@@ -2,6 +2,7 @@
 import React, { ChangeEvent, useState } from "react";
 import { addPosts, getPosts } from "../api";
 import { useRouter } from "next/navigation";
+import Container from "../components/Container";
 
 // inputの中身を取得する⇨DBに保存する
 
@@ -20,7 +21,7 @@ const page = () => {
   };
 
   return (
-    <div className="container flex flex-col m-auto">
+    <Container>
       <h1 className="text-center text-gray-500 font-bold text-xl p-5">
         記事投稿をする
       </h1>
@@ -50,7 +51,7 @@ const page = () => {
       >
         投稿する
       </button>
-    </div>
+    </Container>
   );
 };
 

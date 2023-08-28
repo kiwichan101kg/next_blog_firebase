@@ -2,7 +2,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import Navbar from "./Navbar";
+import Navbar from "./components/Navbar";
 import { AuthProvider } from "./context/auth";
 import { useState } from "react";
 

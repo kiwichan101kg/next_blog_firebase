@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { auth, provider } from "../lib/firebaseConfig";
 import { useRouter } from "next/navigation";
 import { useAuthContext } from "../context/auth";
+import Container from "../components/Container";
 
 const page = () => {
   const router = useRouter();
@@ -20,15 +21,17 @@ const page = () => {
     });
   };
   return (
-    <div>
-      <h1>ログインで始める</h1>
-      <button
-        onClick={loginWithGoogle}
-        className="px-2 py-1 bg-white text-blue-500 border border-blue-500 font-semibold rounded hover:bg-blue-100 duration-200 hover:scale-95"
-      >
-        Googleでログイン
-      </button>
-    </div>
+    <>
+      <Container>
+        <h1>ログインで始める</h1>
+        <button
+          onClick={loginWithGoogle}
+          className="px-2 py-1 bg-white text-blue-500 border border-blue-500 font-semibold rounded hover:bg-blue-100 duration-200 hover:scale-95"
+        >
+          Googleでログイン
+        </button>
+      </Container>
+    </>
   );
 };
 

@@ -15,22 +15,29 @@ const Nav = ({ isAuth }: { isAuth: boolean }) => {
       <ul className={styles.list}>
         <Link
           href={"/posts"}
-          className="text-white hover:text-white hover:bg-teal-400 duration-200 scale-95  rounded-full px-3 py-2"
+          className="text-white hover:text-white hover:bg-teal-400 duration-200 scale-95  rounded-full mx-2 px-3 py-2"
           onClick={() => setNavIsOpen(false)}
         >
           Post
         </Link>
         <Link
           href={"/contact"}
-          className="text-white hover:text-white hover:bg-teal-400 duration-200 scale-95  rounded-full px-3 py-2"
+          className="text-white hover:text-white hover:bg-teal-400 duration-200 scale-95  rounded-full mx-2 px-3 py-2"
           onClick={() => setNavIsOpen(false)}
         >
           Contact
         </Link>
+        <Link
+          href={"/setting"}
+          className="text-white hover:text-white hover:bg-teal-400 duration-200 scale-95  rounded-full mx-2 px-3 py-2"
+          onClick={() => setNavIsOpen(false)}
+        >
+          Setting
+        </Link>
         {isAuth ? (
           <Link
             href={"/logout"}
-            className="text-white hover:text-white hover:bg-teal-400 duration-200 scale-95 border rounded-full px-4 py-2"
+            className="text-white hover:text-white hover:bg-teal-400 duration-200 scale-95 border rounded-full mx-2 px-4 py-2"
             onClick={() => setNavIsOpen(false)}
           >
             logout
@@ -38,7 +45,7 @@ const Nav = ({ isAuth }: { isAuth: boolean }) => {
         ) : (
           <Link
             href={"/login"}
-            className="text-white hover:text-white hover:bg-teal-400 duration-200 scale-95 border rounded-full px-4 py-2"
+            className="text-white hover:text-white hover:bg-teal-400 duration-200 scale-95 border rounded-full mx-2 px-4 py-2"
             onClick={() => setNavIsOpen(false)}
           >
             login

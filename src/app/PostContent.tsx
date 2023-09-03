@@ -2,15 +2,18 @@ import React from "react";
 import DateAndTime from "./components/DateAndTime";
 import Image from "next/image";
 import Link from "next/link";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import rehypeKatex from "rehype-katex";
 
-export type PostContent = {
+export type PostContentType = {
   post_id: string;
   title: string;
   body: string;
   createdAt: { seconds: number; nanoseconds: number };
 };
 
-const PostContent = ({ post_id, title, body, createdAt }: PostContent) => {
+const PostContent = ({ post_id, title, body, createdAt }: PostContentType) => {
   return (
     <div className=" flex flex-col bg-white p-4 rounded-sm">
       <div className="flex justify-between">
@@ -32,7 +35,13 @@ const PostContent = ({ post_id, title, body, createdAt }: PostContent) => {
 
       <hr />
 
-      <p className="p-2">{trunscateString(body, 40)}</p>
+      <ReactMarkdown
+        remarkPlugins={[remarkGfm]}
+        rehypePlugins={[rehypeKatex]}
+        className="text-sm"
+      >
+        {trunscateString(body, 40)}
+      </ReactMarkdown>
     </div>
   );
 };

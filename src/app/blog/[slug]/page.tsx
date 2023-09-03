@@ -2,6 +2,7 @@
 import { getPostBySlug } from "@/app/api";
 import Container from "@/app/components/Container";
 import FlexBox from "@/app/components/FlexBox";
+import Preview from "@/app/posts/Preview";
 import React, { useEffect, useState } from "react";
 
 type PostSlug = {
@@ -23,8 +24,7 @@ const page = ({ params: { slug } }: PostSlug) => {
   return (
     <Container>
       <FlexBox>
-        <h1 className="font-bold text-4xl">{postContent?.title}</h1>
-        <div>{postContent?.body}</div>
+        <Preview title={postContent?.title} body={postContent?.body}></Preview>
       </FlexBox>
     </Container>
   );

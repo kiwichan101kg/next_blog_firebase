@@ -3,4 +3,5 @@ export type TextAttribute = {
   name: string;
   ariaLabel: string;
   value?: string;
+  required?: boolean;
 };

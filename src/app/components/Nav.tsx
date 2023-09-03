@@ -1,10 +1,22 @@
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../styles/nav.module.css";
 import NavLink from "./atoms/NavLink";
+import { useAuthContext } from "../context/auth";
 
-const Nav = ({ isAuth }: { isAuth: boolean }) => {
+const Nav = () => {
   const [navIsOpen, setNavIsOpen] = useState(false);
+  const { isAuth, setIsAuth } = useAuthContext();
+
+  useEffect(() => {
+    const isAuthStrage = localStorage.getItem("isAuth");
+    if (isAuthStrage === "true") {
+      setIsAuth(true);
+    } else {
+      setIsAuth(false);
+    }
+  }, [isAuth]);
+
   return (
     <div className={navIsOpen ? styles.open : styles.close}>
       <button
@@ -14,10 +26,6 @@ const Nav = ({ isAuth }: { isAuth: boolean }) => {
         <span className={styles.bar}></span>
       </button>
       <ul className={styles.list}>
-        <NavLink href={"/posts"} onClick={() => setNavIsOpen(false)}>
-          Post
-        </NavLink>
-
         <NavLink href={"/contact"} onClick={() => setNavIsOpen(false)}>
           Contact
         </NavLink>
@@ -25,11 +33,20 @@ const Nav = ({ isAuth }: { isAuth: boolean }) => {
         <NavLink href={"/setting"} onClick={() => setNavIsOpen(false)}>
           Setting
         </NavLink>
-
         {isAuth ? (
-          <NavLink border href={"/logout"} onClick={() => setNavIsOpen(false)}>
-            Logout
-          </NavLink>
+          <>
+            <NavLink href={"/posts"} onClick={() => setNavIsOpen(false)}>
+              Post
+            </NavLink>
+
+            <NavLink
+              border
+              href={"/logout"}
+              onClick={() => setNavIsOpen(false)}
+            >
+              Logout
+            </NavLink>
+          </>
         ) : (
           <NavLink border href={"/login"} onClick={() => setNavIsOpen(false)}>
             Login

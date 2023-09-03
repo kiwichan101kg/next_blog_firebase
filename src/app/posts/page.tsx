@@ -8,6 +8,7 @@ import TextLabel from "../components/atoms/TextLabel";
 import TextInput from "../components/atoms/TextInput";
 import TextArea from "../components/atoms/TextArea";
 import FlexBox from "../components/FlexBox";
+import { useAuthContext } from "../context/auth";
 
 // inputの中身を取得する⇨DBに保存する
 
@@ -15,8 +16,10 @@ const page = () => {
   const router = useRouter();
   const [title, setTitle] = useState<string>("");
   const [text, setText] = useState<string>("");
+  const { isAuth } = useAuthContext();
 
   const handlePost = async () => {
+    if (!title || !text) return;
     await addPosts(title, text).then((res) => {
       setText("");
       setTitle("");
@@ -24,6 +27,10 @@ const page = () => {
       router.push("/");
     });
   };
+
+  if (!isAuth) {
+    router.push("/login");
+  }
 
   return (
     <Container>
@@ -42,6 +49,7 @@ const page = () => {
               setTitle(e.target.value)
             }
             value={title}
+            required
           />
         </div>
         <div>

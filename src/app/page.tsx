@@ -3,12 +3,7 @@ import { useEffect, useState } from "react";
 import { getPosts } from "./api";
 import Container from "./components/Container";
 import FlexBox from "./components/FlexBox";
-
-type PostContent = {
-  title: string;
-  text: string;
-  date: { seconds: number; nanoseconds: number };
-};
+import PostContent from "./PostContent";
 
 export default function Home() {
   const [postContents, setPostContent] = useState<any[] | undefined>(undefined);
@@ -28,10 +23,10 @@ export default function Home() {
       <Container>
         <FlexBox>
           {postContents?.map((content) => (
-            <div className=" flex flex-col w-full m-auto bg-white p-4 m-4 rounded-sm">
-              <h2>{content.title}</h2>
-              <p>{content.text}</p>
-            </div>
+            <PostContent
+              key={String(content.date.seconds)}
+              {...content}
+            ></PostContent>
           ))}
         </FlexBox>
       </Container>

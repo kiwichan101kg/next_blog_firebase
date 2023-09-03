@@ -5,6 +5,9 @@ import { Inter } from "next/font/google";
 import Navbar from "./components/Navbar";
 import { AuthProvider } from "./context/auth";
 import { useState } from "react";
+// Font Awesomeの設定
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import { config } from "@fortawesome/fontawesome-svg-core";
 
 const inter = Inter({ subsets: ["latin"] });
 

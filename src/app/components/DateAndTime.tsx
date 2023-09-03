@@ -6,11 +6,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock, faClockFour } from "@fortawesome/free-solid-svg-icons";
 
 type DateProps = {
-  date: { seconds: number; nanoseconds: number };
+  createAt: { seconds: number; nanoseconds: number };
 };
 
-const DateAndTime = ({ date }: DateProps) => {
-  const timestamp = new Timestamp(date.seconds, date.nanoseconds);
+const DateAndTime = ({ createAt }: DateProps) => {
+  const timestamp = new Timestamp(createAt.seconds, createAt.nanoseconds);
   const convertDate = format(timestamp.toDate(), "yyyy年MM月dd日", {
     locale: ja,
   });
@@ -40,7 +40,7 @@ const getDiff = (timestamp: Timestamp): string | undefined => {
   if (seconds > 2592000) return;
 
   if (seconds < 60) {
-    return `${seconds}秒前`;
+    return `たった今`;
   } else if (seconds < 3600) {
     const minutes = Math.floor(seconds / 60);
     return `${minutes}分前`;

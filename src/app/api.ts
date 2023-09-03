@@ -3,6 +3,8 @@ import {
   addDoc,
   getDocs,
   serverTimestamp,
+  orderBy,
+  query,
 } from "firebase/firestore";
 import { db } from "./lib/firebaseConfig";
 
@@ -11,7 +13,7 @@ export const addPosts = async (title: string, text: string) => {
     const docRef = await addDoc(collection(db, "posts"), {
       title,
       text,
-      date: serverTimestamp(),
+      createAt: serverTimestamp(),
     });
     console.log("Document written with ID: ", docRef.id);
   } catch (e) {
@@ -20,11 +22,11 @@ export const addPosts = async (title: string, text: string) => {
 };
 
 export const getPosts = async () => {
-  const querySnapshot = await getDocs(collection(db, "posts"));
+  const q = query(collection(db, "posts"), orderBy("createAt", "desc"));
+  const querySnapshot = await getDocs(q);
   const data = querySnapshot.docs.map((doc) => ({
     ...doc.data(),
   }));
-  console.log(data);
 
   return data;
 };

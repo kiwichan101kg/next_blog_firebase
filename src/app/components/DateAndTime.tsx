@@ -6,11 +6,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock, faClockFour } from "@fortawesome/free-solid-svg-icons";
 
 type DateProps = {
-  createAt: { seconds: number; nanoseconds: number };
+  createdAt: { seconds: number; nanoseconds: number };
 };
 
-const DateAndTime = ({ createAt }: DateProps) => {
-  const timestamp = new Timestamp(createAt.seconds, createAt.nanoseconds);
+const DateAndTime = ({ createdAt }: DateProps) => {
+  const timestamp = new Timestamp(createdAt.seconds, createdAt.nanoseconds);
   const convertDate = format(timestamp.toDate(), "yyyy年MM月dd日", {
     locale: ja,
   });

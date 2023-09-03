@@ -1,14 +1,16 @@
 import React from "react";
 import DateAndTime from "./components/DateAndTime";
 import Image from "next/image";
+import Link from "next/link";
 
 type PostContent = {
+  post_id: string;
   title: string;
-  text: string;
-  createAt: { seconds: number; nanoseconds: number };
+  body: string;
+  createdAt: { seconds: number; nanoseconds: number };
 };
 
-const PostContent = ({ title, text, createAt }: PostContent) => {
+const PostContent = ({ post_id, title, body, createdAt }: PostContent) => {
   return (
     <div className=" flex flex-col bg-white p-4 rounded-sm">
       <div className="flex justify-between">
@@ -20,24 +22,26 @@ const PostContent = ({ title, text, createAt }: PostContent) => {
             height={60}
             className="rounded-full"
           ></Image>
-          <h2>{title}</h2>
+          <Link href={`/blog/${post_id}`}>
+            <h2 className="hover:text-gray-500">{title}</h2>
+          </Link>
         </div>
 
-        <DateAndTime createAt={createAt}></DateAndTime>
+        <DateAndTime createdAt={createdAt}></DateAndTime>
       </div>
 
       <hr />
 
-      <p className="p-2">{trunscateString(text, 40)}</p>
+      <p className="p-2">{trunscateString(body, 40)}</p>
     </div>
   );
 };
 
-const trunscateString = (text: string, maxLength: number) => {
-  if (text.length <= maxLength) {
-    return text;
+const trunscateString = (body: string, maxLength: number) => {
+  if (body.length <= maxLength) {
+    return body;
   } else {
-    return `${text.substring(0, maxLength)}...`;
+    return `${body.substring(0, maxLength)}...`;
   }
 };
 

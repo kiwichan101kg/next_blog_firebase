@@ -24,7 +24,7 @@ export default function Home() {
         <FlexBox>
           {postContents?.map((content) => (
             <PostContent
-              key={String(content.date.seconds)}
+              key={String(content.createdAt.seconds)}
               {...content}
             ></PostContent>
           ))}

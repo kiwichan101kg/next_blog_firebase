@@ -14,10 +14,6 @@ export default function Home() {
     };
     setPosts();
   }, []);
-  // const res = await getPosts();
-  const handleGet = async () => {
-    await getPosts();
-  };
   return (
     <div>
       <Container>

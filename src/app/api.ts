@@ -11,6 +11,7 @@ import {
 } from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
 import { db } from "./lib/firebaseConfig";
+import { PostContent } from "./PostContent";
 
 export const addPosts = async (title: string, text: string) => {
   try {
@@ -36,13 +37,10 @@ export const getPosts = async () => {
 };
 
 export const getPostBySlug = async (slug: string) => {
-  const q = query(
-    collection(db, "posts"),
-    where("post_id", "==", "f83a6952-4e76-4904-8766-95f20d279b0a")
-  );
+  const q = query(collection(db, "posts"), where("post_id", "==", slug));
   const querySnapshot = await getDocs(q);
   const data = querySnapshot.docs.map((doc) => ({
     ...doc.data(),
   }));
-  return data;
+  return data[0];
 };

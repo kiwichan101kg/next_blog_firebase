@@ -24,7 +24,7 @@ export default function RootLayout({
   const [isAuth, setIsAuth] = useState<boolean>(false);
 
   return (
-    <html lang="en" className="bg-teal-50">
+    <html lang="en" className="bg-cyan-50">
       <body className={inter.className} suppressHydrationWarning={true}>
         <AuthProvider
           authInfo={{

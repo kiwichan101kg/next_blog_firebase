@@ -3,7 +3,7 @@ import DateAndTime from "./components/DateAndTime";
 import Image from "next/image";
 import Link from "next/link";
 
-type PostContent = {
+export type PostContent = {
   post_id: string;
   title: string;
   body: string;

@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { getPosts } from "./api";
 import Container from "./components/Container";
+import FlexBox from "./components/FlexBox";
 
 type PostContent = {
   title: string;
@@ -25,14 +26,14 @@ export default function Home() {
   return (
     <div>
       <Container>
-        <div className="flex flex-col gap-6">
+        <FlexBox>
           {postContents?.map((content) => (
             <div className=" flex flex-col w-full m-auto bg-white p-4 m-4 rounded-sm">
               <h2>{content.title}</h2>
               <p>{content.text}</p>
             </div>
           ))}
-        </div>
+        </FlexBox>
       </Container>
     </div>
   );

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import styles from "../styles/nav.module.css";
+import NavLink from "./atoms/NavLink";
 
 const Nav = ({ isAuth }: { isAuth: boolean }) => {
   const [navIsOpen, setNavIsOpen] = useState(false);
@@ -13,43 +14,26 @@ const Nav = ({ isAuth }: { isAuth: boolean }) => {
         <span className={styles.bar}></span>
       </button>
       <ul className={styles.list}>
-        <Link
-          href={"/posts"}
-          className="text-white hover:text-white hover:bg-teal-400 duration-200 scale-95  rounded-full mx-2 px-3 py-2"
-          onClick={() => setNavIsOpen(false)}
-        >
+        <NavLink href={"/posts"} onClick={() => setNavIsOpen(false)}>
           Post
-        </Link>
-        <Link
-          href={"/contact"}
-          className="text-white hover:text-white hover:bg-teal-400 duration-200 scale-95  rounded-full mx-2 px-3 py-2"
-          onClick={() => setNavIsOpen(false)}
-        >
+        </NavLink>
+
+        <NavLink href={"/contact"} onClick={() => setNavIsOpen(false)}>
           Contact
-        </Link>
-        <Link
-          href={"/setting"}
-          className="text-white hover:text-white hover:bg-teal-400 duration-200 scale-95  rounded-full mx-2 px-3 py-2"
-          onClick={() => setNavIsOpen(false)}
-        >
+        </NavLink>
+
+        <NavLink href={"/setting"} onClick={() => setNavIsOpen(false)}>
           Setting
-        </Link>
+        </NavLink>
+
         {isAuth ? (
-          <Link
-            href={"/logout"}
-            className="text-white hover:text-white hover:bg-teal-400 duration-200 scale-95 border rounded-full mx-2 px-4 py-2"
-            onClick={() => setNavIsOpen(false)}
-          >
-            logout
-          </Link>
+          <NavLink border href={"/logout"} onClick={() => setNavIsOpen(false)}>
+            Logout
+          </NavLink>
         ) : (
-          <Link
-            href={"/login"}
-            className="text-white hover:text-white hover:bg-teal-400 duration-200 scale-95 border rounded-full mx-2 px-4 py-2"
-            onClick={() => setNavIsOpen(false)}
-          >
-            login
-          </Link>
+          <NavLink border href={"/login"} onClick={() => setNavIsOpen(false)}>
+            Login
+          </NavLink>
         )}
       </ul>
     </div>

@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useAuthContext } from "../context/auth";
 import Container from "../components/Container";
 import LoginForm from "./LoginForm";
+import Button from "../components/atoms/Button";
 
 const page = () => {
   const router = useRouter();
@@ -31,12 +32,7 @@ const page = () => {
         <LoginForm />
 
         <div className="flex justify-center">
-          <button
-            onClick={loginWithGoogle}
-            className="w-full px-2 py-1 my-6 bg-white text-blue-500 border border-blue-500 font-semibold rounded hover:bg-blue-100 duration-200 hover:scale-95"
-          >
-            Googleでログイン
-          </button>
+          <Button onClick={loginWithGoogle}>Googleでログイン</Button>
         </div>
       </Container>
     </>

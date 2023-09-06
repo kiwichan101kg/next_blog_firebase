@@ -15,7 +15,7 @@ const PostList = () => {
   }, []);
 
   // 一つのページに幾つの記事を表示するか(要素数)
-  const itemPerPage = 2;
+  const itemPerPage = 6;
   const { currentPosts, pageCount, handlePageClick } = useGetPagenationInfo(
     postContents,
     itemPerPage

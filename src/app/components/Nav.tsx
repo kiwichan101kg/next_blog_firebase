@@ -26,17 +26,18 @@ const Nav = () => {
         <span className={styles.bar}></span>
       </button>
       <ul className={styles.list}>
-        <NavLink href={"/contact"} onClick={() => setNavIsOpen(false)}>
+        {/* <NavLink href={"/contact"} onClick={() => setNavIsOpen(false)}>
           Contact
-        </NavLink>
+        </NavLink> */}
 
-        <NavLink href={"/setting"} onClick={() => setNavIsOpen(false)}>
-          Setting
-        </NavLink>
         {isAuth ? (
           <>
             <NavLink href={"/posts"} onClick={() => setNavIsOpen(false)}>
               Post
+            </NavLink>
+
+            <NavLink href={"/mypage"} onClick={() => setNavIsOpen(false)}>
+              Mypage
             </NavLink>
 
             <NavLink
@@ -48,9 +49,18 @@ const Nav = () => {
             </NavLink>
           </>
         ) : (
-          <NavLink border href={"/login"} onClick={() => setNavIsOpen(false)}>
-            Login
-          </NavLink>
+          <>
+            <NavLink
+              border
+              href={"/signup"}
+              onClick={() => setNavIsOpen(false)}
+            >
+              Sign up
+            </NavLink>
+            <NavLink border href={"/login"} onClick={() => setNavIsOpen(false)}>
+              Login
+            </NavLink>
+          </>
         )}
       </ul>
     </div>

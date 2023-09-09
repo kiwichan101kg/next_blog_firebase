@@ -35,8 +35,6 @@ const handler = NextAuth({
     session: ({ session, token }) => {
       console.log("in session", { session, token });
       token.accessToken;
-      console.log("id", token.sub);
-
       return {
         ...session,
         user: {

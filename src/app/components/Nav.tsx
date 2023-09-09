@@ -3,10 +3,12 @@ import React, { useEffect, useState } from "react";
 import styles from "../styles/nav.module.css";
 import NavLink from "./atoms/NavLink";
 import { useAuthContext } from "../context/auth";
+import { useSession } from "next-auth/react";
 
 const Nav = () => {
   const [navIsOpen, setNavIsOpen] = useState(false);
   const { isAuth, setIsAuth } = useAuthContext();
+  const { data: session } = useSession();
 
   useEffect(() => {
     const isAuthStrage = localStorage.getItem("isAuth");
@@ -26,17 +28,18 @@ const Nav = () => {
         <span className={styles.bar}></span>
       </button>
       <ul className={styles.list}>
-        <NavLink href={"/contact"} onClick={() => setNavIsOpen(false)}>
+        {/* <NavLink href={"/contact"} onClick={() => setNavIsOpen(false)}>
           Contact
-        </NavLink>
+        </NavLink> */}
 
-        <NavLink href={"/setting"} onClick={() => setNavIsOpen(false)}>
-          Setting
-        </NavLink>
-        {isAuth ? (
+        {session ? (
           <>
             <NavLink href={"/posts"} onClick={() => setNavIsOpen(false)}>
               Post
+            </NavLink>
+
+            <NavLink href={"/mypage"} onClick={() => setNavIsOpen(false)}>
+              Mypage
             </NavLink>
 
             <NavLink
@@ -48,9 +51,18 @@ const Nav = () => {
             </NavLink>
           </>
         ) : (
-          <NavLink border href={"/login"} onClick={() => setNavIsOpen(false)}>
-            Login
-          </NavLink>
+          <>
+            <NavLink
+              border
+              href={"/signup"}
+              onClick={() => setNavIsOpen(false)}
+            >
+              Sign up
+            </NavLink>
+            <NavLink border href={"/login"} onClick={() => setNavIsOpen(false)}>
+              Login
+            </NavLink>
+          </>
         )}
       </ul>
     </div>

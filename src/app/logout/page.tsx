@@ -1,22 +1,20 @@
 "use client";
-import { signOut } from "@firebase/auth";
 import React from "react";
 import { auth } from "../lib/firebaseConfig";
 import { useRouter } from "next/navigation";
 import { useAuthContext } from "../context/auth";
 import Container from "../components/Container";
 import Button from "../components/atoms/Button";
+import { signIn, signOut } from "next-auth/react";
 
 const page = () => {
   const router = useRouter();
   const { isAuth, setIsAuth } = useAuthContext();
 
   const logout = () => {
-    signOut(auth).then(() => {
-      localStorage.clear();
-      setIsAuth(false);
-      router.push("/login");
-    });
+    signOut();
+    router.push("/login");
+    setIsAuth(false);
   };
   return (
     <Container half>

@@ -8,6 +8,7 @@ import { useState } from "react";
 // Font Awesomeの設定
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
+import NextAuthProvider from "@/providers/NextAuth";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,15 +27,17 @@ export default function RootLayout({
   return (
     <html lang="en" className="bg-cyan-50">
       <body className={inter.className} suppressHydrationWarning={true}>
-        <AuthProvider
-          authInfo={{
-            isAuth,
-            setIsAuth,
-          }}
-        >
-          <Navbar />
-          {children}
-        </AuthProvider>
+        <NextAuthProvider>
+          <AuthProvider
+            authInfo={{
+              isAuth,
+              setIsAuth,
+            }}
+          >
+            <Navbar />
+            {children}
+          </AuthProvider>
+        </NextAuthProvider>
       </body>
     </html>
   );

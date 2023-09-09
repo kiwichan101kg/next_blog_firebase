@@ -26,6 +26,9 @@ const LoginForm = () => {
     <>
       <form action="">
         <FlexBox>
+          <h1 className="text-center  text-gray-500 font-bold text-xl p-5">
+            ログインで始める
+          </h1>
           <div>
             <TextLabel htmlFor={"email"}>メールアドレス</TextLabel>
             <TextInput
@@ -47,8 +50,6 @@ const LoginForm = () => {
           </div>
 
           <Button blue>ログイン</Button>
-
-          <Button onClick={loginWithGoogle}>Googleでログイン</Button>
         </FlexBox>
       </form>
     </>

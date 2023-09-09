@@ -3,10 +3,12 @@ import React, { useEffect, useState } from "react";
 import styles from "../styles/nav.module.css";
 import NavLink from "./atoms/NavLink";
 import { useAuthContext } from "../context/auth";
+import { useSession } from "next-auth/react";
 
 const Nav = () => {
   const [navIsOpen, setNavIsOpen] = useState(false);
   const { isAuth, setIsAuth } = useAuthContext();
+  const { data: session } = useSession();
 
   useEffect(() => {
     const isAuthStrage = localStorage.getItem("isAuth");
@@ -30,7 +32,7 @@ const Nav = () => {
           Contact
         </NavLink> */}
 
-        {isAuth ? (
+        {session ? (
           <>
             <NavLink href={"/posts"} onClick={() => setNavIsOpen(false)}>
               Post

@@ -7,7 +7,6 @@ import ExternalLogin from "./ExternalLogin";
 import SetGap from "../components/SetGap";
 
 const page = () => {
-  const { data: session } = useSession();
   return (
     <>
       <Container half>

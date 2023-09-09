@@ -7,7 +7,6 @@ import { AuthProvider } from "./context/auth";
 import { useState } from "react";
 // Font Awesomeの設定
 import "@fortawesome/fontawesome-svg-core/styles.css";
-import { config } from "@fortawesome/fontawesome-svg-core";
 import NextAuthProvider from "@/providers/NextAuth";
 
 const inter = Inter({ subsets: ["latin"] });

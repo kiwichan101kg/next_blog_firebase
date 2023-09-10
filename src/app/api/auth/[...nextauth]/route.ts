@@ -22,6 +22,7 @@ const handler = NextAuth({
     jwt: async ({ token, user, account, profile, isNewUser }) => {
       // 注意: トークンをログ出力してはダメです。
       console.log("in jwt", { user, token, account, profile });
+      // JWTの検証が成功した場合
       if (user) {
         token.user = user;
         const u = user as any;
@@ -29,6 +30,12 @@ const handler = NextAuth({
       }
       if (account) {
         token.accessToken = account.access_token;
+      }
+
+      // JWTの検証に失敗した場合
+      if (!token) {
+        // エラーハンドリング: JWTが不正な場合の処理を記述
+        throw new Error("JWT verification failed");
       }
       return token;
     },

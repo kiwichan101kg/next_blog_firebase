@@ -41,3 +41,14 @@ export const getPostBySlug = async (slug: string) => {
   }));
   return data[0];
 };
+
+export const fetchUserInfo = async (userId: string) => {
+  console.log("fetchUserInfo", userId);
+
+  const q = query(collection(db, "users"), where("user_id", "==", userId));
+  const querySnapshot = await getDocs(q);
+  const data = querySnapshot.docs.map((doc) => ({
+    ...doc.data(),
+  }));
+  return data[0];
+};

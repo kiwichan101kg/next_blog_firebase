@@ -8,6 +8,7 @@ import { useState } from "react";
 // Font Awesomeの設定
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import NextAuthProvider from "@/providers/NextAuth";
+import { StoreProviders } from "./redux/provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,15 +28,17 @@ export default function RootLayout({
     <html lang="en" className="bg-cyan-50">
       <body className={inter.className} suppressHydrationWarning={true}>
         <NextAuthProvider>
-          <AuthProvider
-            authInfo={{
-              isAuth,
-              setIsAuth,
-            }}
-          >
-            <Navbar />
-            {children}
-          </AuthProvider>
+          <StoreProviders>
+            <AuthProvider
+              authInfo={{
+                isAuth,
+                setIsAuth,
+              }}
+            >
+              <Navbar />
+              {children}
+            </AuthProvider>
+          </StoreProviders>
         </NextAuthProvider>
       </body>
     </html>
